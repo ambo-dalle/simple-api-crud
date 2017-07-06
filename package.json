@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/ambo-dalle/simple-api-crud/issues"
   },
-  "homepage": "https://github.com/ambo-dalle/simple-api-crud#readme"
+  "homepage": "https://github.com/ambo-dalle/simple-api-crud#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "mongoose": "^4.11.1"
+  }
 }

@@ -1,14 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const foodController = require('../controllers/food_controller')
-// const foodController = require('../controllers/restauran_controller')
-
-
 
 router.post('/', foodController.createFood )
 router.get('/', foodController.getall )
-router.delete('/', foodController.deleteFood )
-router.put('/', foodController.update)
+router.get('/:id', foodController.findOneFood )
+router.delete('/:id', foodController.deleteFood )
+router.put('/:id', foodController.update)
 
 
 

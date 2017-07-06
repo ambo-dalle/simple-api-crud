@@ -1,13 +1,12 @@
 const express = require('express')
 const router = express.Router()
-// const foodController = require('../controllers/food_controller')
-// const foodController = require('../controllers/restauran_controller')
+const RestaurantController = require('../controllers/restaurant_controller')
+
+router.post('/', RestaurantController.createRestaurant )
+router.get('/', RestaurantController.getall )
+router.get('/:id', RestaurantController.findOneRestaurant )
+router.delete('/:id', RestaurantController.deleteRestaurant )
+router.put('/:id', RestaurantController.update)
 
 
-router.get('/', (req,res,next)=>{
-     res.send('Tes')
-} )
-
-
-
-module.export = router
+module.exports = router

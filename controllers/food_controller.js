@@ -27,7 +27,15 @@ const Food = require('../models/food_models')
         }
       });
   }
-
+  var findOneFood = (req,res,next)=>{
+       Food.findOne({_id : req.params.id}, function(err,docs){
+            if(err) {
+                 res.send(err)
+            } else {
+                 res.send(docs)
+            }
+       })
+  }
 
   var deleteFood = (req, res, next) => {
     let id = req.params.id;
@@ -41,7 +49,6 @@ const Food = require('../models/food_models')
       }
     });
   }
-
 
   var update = (req, res,next)=>{
     Food.findById(req.params.id, (err, docs) => {
@@ -67,5 +74,6 @@ module.exports = {
      getall,
      createFood,
      deleteFood,
-     update
+     update,
+     findOneFood
 }

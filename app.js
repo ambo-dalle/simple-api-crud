@@ -16,14 +16,14 @@ mongoose.connect(db_config[app_env], function(){
      console.log('connect to db' + db_config[app_env]);
 })
 var foods = require('./routes/food');
-// var restaurants = require('./routes/restaurant');
+var restaurants = require('./routes/restaurant');
 
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : false}))
 
 app.use('/foods', foods)
-// app.use('/restaurants', restaurants)
+app.use('/restaurants', restaurants)
 
 
 app.listen(3000, function(){

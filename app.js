@@ -2,6 +2,8 @@ var express = require('express')
 var app = express()
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser')
+var cors = require('cors')
+
 
 var db_config = {
      development : 'mongodb://localhost/simple-api-crud',
@@ -18,7 +20,7 @@ mongoose.connect(db_config[app_env], function(){
 var foods = require('./routes/food');
 var restaurants = require('./routes/restaurant');
 
-
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : false}))
 

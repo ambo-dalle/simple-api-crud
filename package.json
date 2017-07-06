@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ambo-dalle/simple-api-crud#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
     "mongoose": "^4.11.1"
   }
 }

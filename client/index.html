@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <meta charset="utf-8">
+          <title>Restaurant Suka-Suka</title>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+          <script src="https://unpkg.com/vue"></script>
+          <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+     </head>
+     <body>
+          <div id="app" class="container">
+               <nav class="navbar navbar-default navbar-fixed-top"  >
+                  <div class="container">
+
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="index.html">Restaurant Suka-Suka</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Kategory
+                          <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">Makanan</a></li>
+                            <li><a href="#">Minuman</a></li>
+                            <li><a href="#">Camilan</a></li>
+                          </ul>
+                        </li>
+
+                      </ul>
+                      <form class="navbar-form navbar-left" action="#" >
+                        <div class="form-group" width="100%" height="25px" >
+                          <input type="text" class="form-control" name="key" placeholder="Search Product" size="55%" >
+                          <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                          </button>
+                        </div>
+                      </form>
+                      <ul class="nav navbar-nav navbar-right">
+                       <li><a href="register.html" target="_blank"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                       <li><a href="register.html" target="_blank"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                     </ul>
+
+                    </div><!-- /.navbar-collapse -->
+                  </div><!-- /.container-fluid -->
+               </nav>
+               <br>
+               <br>
+               <br>
+
+               <h1>Food Menus</h1>
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>Name Food</th>
+                            <th>Price</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="food in listfoods">
+                            <td >{{ food.name }}</td>
+                            <td >{{ food.price }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <h1>Restaurants</h1>
+                           <table class="table table-striped">
+                               <thead>
+                                 <tr>
+                                   <th>Name Restaurant</th>
+                                   <th>Owner</th>
+                                   <th>Address</th>
+
+                                 </tr>
+                               </thead>
+                               <tbody>
+                                 <tr v-for="restaurant in listrestaurant">
+                                   <td >{{ restaurant.name }}</td>
+                                   <td >{{ restaurant.owner }}</td>
+                                   <td >{{ restaurant.address }}</td>
+                                 </tr>
+                               </tbody>
+                             </table>
+       </div>
+
+
+     <script>
+     var app = new Vue({
+               el: '#app',
+               data: {
+                    listfoods : '',
+                    listrestaurant : ''
+               },
+
+               methods : {
+                    getItemFood () {
+                         var self = this
+                         axios.get('http://localhost:3000/foods')
+                         .then(function(response) {
+                              console.log(response);
+                              self.listfoods = response.data
+
+                         })
+                         .catch((err) => {
+                              console.log(err);
+                         })
+                    },
+                    getItemRestaurant () {
+                         var self = this
+                         axios.get('http://localhost:3000/restaurants')
+                         .then(function(response) {
+                              console.log(response);
+                              self.listrestaurant = response.data
+
+                         })
+                         .catch((err) => {
+                              console.log(err);
+                         })
+                    }
+
+
+               },
+               created () {
+                    this.getItemFood()
+                    this.getItemRestaurant ()
+               }
+          })
+
+     </script>
+
+     </body>
+</html>
